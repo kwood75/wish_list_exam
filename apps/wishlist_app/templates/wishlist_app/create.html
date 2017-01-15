@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Create Item</title>
+  </head>
+
+  <body>
+    <a href="/"><button>Home</button></a>
+    <a href="/logout"><button>Log Out</button></a>
+
+    <div>
+      <h1>Create a New Wish List Item</h1>
+      <form class="ui form" action="{% url 'wishlist:process' %}" method="post">
+        {% csrf_token %}
+        Item/Product: <input type="text" name="item" placeholder="Item/Product"><br><br>
+        <input type="submit" value="Add">
+      </form>
+      {% if messages %}
+          <ul>
+          {% for message in messages %}
+              <li>{{message}}</li>
+          {% endfor %}
+          </ul>
+      {% endif %}
+    </div>
+  </body>
+</html>

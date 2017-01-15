@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashbaord</title>
+  </head>
+  <body>
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{message}}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="/"><button>Home</button></a>
+    <a href="/logout"><button>Log Out</button></a>
+
+    <h1>Product: {{items.item}}</h1><br><br>
+    <h2>Users who added this item under their wish list</h2>
+    {% for others in users %}
+    <h3>{{others.name}}</h3>
+    {% endfor %}
+  </body>
+</html>

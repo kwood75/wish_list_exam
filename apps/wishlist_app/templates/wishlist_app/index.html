@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Wish List</title>
+  </head>
+  <body>
+    <h1>Hello, {{data.name}}!</h1>
+    <a href="/logout"><button>Log Out</button></a>
+    <a href="{% url 'wishlist:create' %}"><button>Add Item</button></a>
+
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{message}}</li>
+        {% endfor %}
+    {% endif %}
+
+    <h3>Your Wish List:</h3>
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Added By</th>
+          <th>Date Added</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td><a href="{% url 'wishlist:dashboard' item.id %}">{{item.item}}</a></td>
+          <td>{{item.user.name}}</td>
+          <td>{{item.date_added}}</td>
+          {% if data == item.user %}
+          <td><a href="{% url 'wishlist:delete' item.id %}">Delete</a></td>
+          {% else %}
+          <td><a href="{% url 'wishlist:remove' item.id %}">Remove from my Wishlist</a></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Other Users' Wish List</h3>
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Added By</th>
+          <th>Date Added</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td><a href="{% url 'wishlist:dashboard' user.id %}">{{user.item}}</a></td>
+          <td>{{user.user.name}}</td>
+          <td>{{user.date_added}}</td>
+          <td><a href="{% url 'wishlist:join' user.id %}">Add to my Wishlist</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
+

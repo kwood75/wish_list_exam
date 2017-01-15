@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login and Registration</title>
+  </head>
+  <body>
+    <h2>Hello and Welcome to your Wishlist Page!</h2>
+    <div id="wrapper">
+      <div class="message">
+        {% if messages %}
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="register">
+        <h1>Register</h1>
+        <form class="ui form" action="{% url 'login:register' %}" method="post">
+          {% csrf_token %}
+          Name: <input type="text" name="name" placeholder="Name">
+          Username: <input type="text" name="username" placeholder="Username">
+          Password: <input type="password" name="password" placeholder="Password">
+          Confirm Password: <input type="password" name="confirm" placeholder="Confirm Password">
+          Date: <input type="date" name="hire_date">
+          <input type="submit" value="Register">
+        </form>
+      </div>
+
+      <div class="login">
+        <h1>Login</h1>
+        <form class="ui form" action="{% url 'login:login' %}" method="post">
+          {% csrf_token %}
+          Username: <input type="text" name="username" placeholder="Username">
+          Password: <input type="password" name="password" placeholder="Password">
+          <input type="submit" value="Login">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
