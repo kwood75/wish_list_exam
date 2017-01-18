@@ -25,7 +25,7 @@ SECRET_KEY = 'y%7!b+2hif!t9#xqm!az#c_p3%k%0jw#_%ncz+f!--im@(h07!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["35.166.46.197"]
+ALLOWED_HOSTS = ["35.162.111.201"]
 
 
 # Application definition
@@ -76,12 +76,15 @@ WSGI_APPLICATION = 'wish_list_exam.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
+     'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'wish_list_exam',
+         'USER': 'wishlist',
+         'PASSWORD': 'password',
+         'HOST': 'localhost',
+         'PORT': '',
+     }
+ }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
